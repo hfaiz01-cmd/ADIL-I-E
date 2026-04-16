@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Trade | Premium Agricultural Exports</title>
+    <style>
+        /* CSS STYLES */
+        :root {
+            --primary: #8b0000; /* Deep Hibiscus Red */
+            --secondary: #2f4f4f; /* Slate Grey for professional feel */
+            --accent: #f4a460; /* Sandy Brown for agricultural feel */
+            --light: #f9f9f9;
+            --dark: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://unsplash.com');
+            background-size: cover;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+        }
+
+        /* CARD GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-tag {
+            font-size: 0.8rem;
+            background: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 1rem;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* FORM MODAL */
+        #inquiry-section {
+            background: white;
+            padding: 3rem;
+            margin-top: 4rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        input, select, textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--secondary);
+            color: white;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">GLOBAL TRADE EXPORTS</div>
+        <nav>Products | Contact | About</nav>
+    </header>
+
+    <section class="hero">
+        <h1>Source Premium Commodities</h1>
+        <p>From Dried Hibiscus to Ginger - Quality Guaranteed</p>
+    </section>
+
+    <div class="container">
+        <h2 style="text-align: center;">Our Product Catalog</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Cards will be injected by JavaScript -->
+        </div>
+
+        <div id="inquiry-section">
+            <h2 style="color: var(--primary);">Request a Quote</h2>
+            <p>Fill out the form below and we will get back to you with pricing and shipping details.</p>
+            <form id="quoteForm">
+                <input type="text" id="name" placeholder="Your Name / Company" required>
+                <input type="email" id="email" placeholder="Your Email Address" required>
+                
+                <select id="commoditySelect" required>
+                    <option value="">Select Commodity</option>
+                    <option value="Hibiscus Flowers">Dried Hibiscus (Zobo)</option>
+                    <option value="Dried Ginger">Dried Ginger</option>
+                    <option value="Cashew Nuts">Raw Cashew Nuts</option>
+                    <option value="Sesame Seeds">Sesame Seeds</option>
+                </select>
+
+                <input type="number" id="quantity" placeholder="Quantity Required (MT)" required>
+                <textarea id="message" rows="4" placeholder="Any specific requirements (Purity, Destination Port, etc.)"></textarea>
+                
+                <button type="submit" class="btn">SEND REQUEST TO EMAIL</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Global Trade Commodities Ltd.
+    </footer>
+
+    <script>
+        // JAVASCRIPT LOGIC
+        
+        // 1. Data for Commodity Cards
+        const products = [
+            {
+                name: "Dried Hibiscus Flowers",
+                tag: "Bestseller",
+                desc: "High Anthocyanin content, 98% purity. Grade A Sun-dried.",
+                img: "https://unsplash.com"
+            },
+            {
+                name: "Dried Split Ginger",
+                tag: "Top Quality",
+                desc: "Low moisture, high pungency. Sourced from organic farms.",
+                img: "https://unsplash.com"
+            },
+            {
+                name: "Raw Cashew Nuts",
+                tag: "Export Grade",
+                desc: "High KOR (Kernel Outturn Ratio), perfectly dried.",
+                img: "https://unsplash.com"
+            }
+        ];
+
+        // 2. Render Cards Automatically
+        const grid = document.getElementById('productGrid');
+        products.forEach(p => {
+            grid.innerHTML += `
+                <div class="card">
+                    <div class="card-img" style="background-image: url('${p.img}')"></div>
+                    <div class="card-content">
+                        <span class="card-tag">${p.tag}</span>
+                        <h3 class="card-title">${p.name}</h3>
+                        <p>${p.desc}</p>
+                        <button class="btn" onclick="selectProduct('${p.name}')">Inquire Now</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        // 3. Auto-fill form when "Inquire Now" is clicked
+        function selectProduct(name) {
+            document.getElementById('commoditySelect').value = name;
+            document.getElementById('inquiry-section').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // 4. Form Submission Logic (Mailto Link)
+        document.getElementById('quoteForm').onsubmit = function(e) {
+            e.preventDefault();
+            
+            const myEmail = "your-email@example.com"; // CHANGE THIS TO YOUR ACTUAL EMAIL
+            const name = document.getElementById('name').value;
+            const commodity = document.getElementById('commoditySelect').value;
+            const qty = document.getElementById('quantity').value;
+            const msg = document.getElementById('message').value;
+
+            const subject = encodeURIComponent(`New Export Inquiry: ${commodity}`);
+            const body = encodeURIComponent(
+                `Hello, my name is ${name}.\n\n` +
+                `I am interested in importing ${qty} Metric Tonnes of ${commodity}.\n\n` +
+                `Additional Details: ${msg}`
+            );
+
+            // Opens the user's email client with the data pre-filled
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+            
+            alert("Your email client will now open. Please click send to finalize your request!");
+        };
+    </script>
+</body>
+</html>
