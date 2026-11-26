@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nigerian Export Items Database</title>
+</head>
+<body>
+
+<script>
+const products = [
+["Dried Hibiscus Flowers","Agriculture","Premium dried hibiscus flowers for beverages and food processing."],
+["Dried Ginger","Agriculture","Nigerian dried ginger, whole and split."],
+["Fresh Ginger","Agriculture","Fresh ginger roots."],
+["Raw Cashew Nuts","Agriculture","Raw cashew nuts for processing."],
+["Cashew Kernels","Agriculture","Processed cashew kernels."],
+["Sesame Seeds","Agriculture","Natural sesame seeds."],
+["Brown Sesame Seeds","Agriculture","Brown sesame seeds."],
+["White Sesame Seeds","Agriculture","White sesame seeds."],
+["Cocoa Beans","Agriculture","Nigerian cocoa beans."],
+["Cocoa Butter","Agriculture","Cocoa butter for food and cosmetics."],
+["Cocoa Powder","Agriculture","Processed cocoa powder."],
+["Palm Kernel Nuts","Agriculture","Palm kernel nuts."],
+["Palm Kernel Oil","Agriculture","Palm kernel oil."],
+["Crude Palm Oil","Agriculture","Crude palm oil."],
+["Shea Nuts","Agriculture","Natural shea nuts."],
+["Shea Butter","Agriculture","Raw and processed shea butter."],
+["Groundnuts","Agriculture","Raw Nigerian groundnuts."],
+["Groundnut Oil","Agriculture","Groundnut oil."],
+["Dried Cassava Chips","Agriculture","Dried cassava chips."],
+["Cassava Starch","Agriculture","Cassava starch."],
+["High Quality Cassava Flour","Agriculture","Processed cassava flour."],
+["Garri","Agriculture","White and yellow garri."],
+["Yam","Agriculture","Fresh Nigerian yam."],
+["Dried Yam","Agriculture","Dried yam slices."],
+["Maize","Agriculture","Yellow and white maize."],
+["Sorghum","Agriculture","Red and white sorghum."],
+["Millet","Agriculture","Natural millet grains."],
+["Fonio","Agriculture","African fonio grain."],
+["Rice","Agriculture","Nigerian rice."],
+["Cowpea / Beans","Agriculture","Nigerian beans."],
+["Pigeon Peas","Agriculture","Natural pigeon peas."],
+["Soybeans","Agriculture","Soybeans for oil and feed."],
+["Bambara Groundnuts","Agriculture","Bambara groundnuts."],
+["Dried Okra","Agriculture","Dried okra."],
+["Dried Pepper","Agriculture","Dried chilli peppers."],
+["Fresh Chillies","Agriculture","Fresh Nigerian chilli."],
+["Dried Onions","Agriculture","Dried onion flakes."],
+["Garlic","Agriculture","Fresh and dried garlic."],
+["Turmeric","Agriculture","Turmeric roots and powder."],
+["Achi Seeds","Agriculture","Achi seeds."],
+["Egusi Seeds","Agriculture","Melon seeds."],
+["Ogbono Seeds","Agriculture","Wild mango seeds."],
+["Ugu Leaves","Agriculture","Fluted pumpkin leaves."],
+["Bitter Kola","Agriculture","Garcinia kola nuts."],
+["Kolanut","Agriculture","Natural kola nuts."],
+["Dried Baobab Fruit","Agriculture","Baobab fruit and powder."],
+["Dried Mango","Agriculture","Dried mango slices."],
+["Dried Pineapple","Agriculture","Dried pineapple."],
+["Coconut","Agriculture","Fresh and dried coconut."],
+["Coconut Oil","Agriculture","Virgin coconut oil."],
+["Dried Plantain","Agriculture","Dried plantain slices."],
+["Plantain Flour","Agriculture","Processed plantain flour."],
+["African Breadfruit","Agriculture","Breadfruit seeds."],
+
+["Natural Honey","Food Products","Raw Nigerian honey."],
+["Dried Crayfish","Food Products","Dried crayfish."],
+["Dried Fish","Food Products","Smoked and dried fish."],
+["Stockfish","Food Products","Processed stockfish."],
+["Tomato Paste","Food Products","Processed tomato paste."],
+["Tomato Powder","Food Products","Dried tomato powder."],
+["Fruit Juice Concentrates","Food Products","Fruit concentrates."],
+["Natural Food Spices","Food Products","Traditional Nigerian spices."],
+
+["Leather Hides and Skins","Livestock","Processed animal hides."],
+["Goat Skins","Livestock","Goat skins."],
+["Cattle Hides","Livestock","Cattle hides."],
+["Sheep Skins","Livestock","Sheep skins."],
+["Frozen Fish","Livestock","Frozen seafood products."],
+["Shrimp","Livestock","Fresh and frozen shrimp."],
+["Crab","Livestock","Fresh and processed crab."],
+["Snails","Livestock","Edible Nigerian snails."],
+
+["Limestone","Minerals","Limestone for cement manufacturing."],
+["Granite","Minerals","Granite for construction."],
+["Marble","Minerals","Natural marble."],
+["Kaolin","Minerals","Kaolin clay."],
+["Bentonite","Minerals","Bentonite clay."],
+["Gypsum","Minerals","Gypsum for construction."],
+["Barite","Minerals","Barite mineral."],
+["Feldspar","Minerals","Feldspar for ceramics."],
+["Silica Sand","Minerals","Silica sand."],
+["Quartz","Minerals","Natural quartz."],
+["Talc","Minerals","Talc mineral."],
+["Lead Ore","Minerals","Lead-bearing ore."],
+["Zinc Ore","Minerals","Zinc-bearing ore."],
+["Copper Ore","Minerals","Copper-bearing ore."],
+["Tin Ore","Minerals","Tin-bearing ore."],
+["Lithium Ore","Minerals","Lithium-bearing material."],
+["Columbite","Minerals","Columbite mineral."],
+["Tantalite","Minerals","Tantalite mineral."],
+["Zircon Sand","Minerals","Zircon mineral sand."],
+["Iron Ore","Minerals","Iron-bearing ore."],
+["Manganese Ore","Minerals","Manganese ore."],
+["Coal","Minerals","Coal for industrial applications."],
+["Bitumen","Minerals","Natural bitumen."],
+["Gemstones","Minerals","Nigerian gemstones."],
+["Tourmaline","Minerals","Natural tourmaline."],
+["Sapphire","Minerals","Natural sapphire."],
+["Aquamarine","Minerals","Natural aquamarine."],
+
+["Sawn Timber","Wood & Textiles","Processed timber."],
+["Wood Veneer","Wood & Textiles","Wood veneer."],
+["Plywood","Wood & Textiles","Engineered wood products."],
+["Rattan","Wood & Textiles","Natural rattan."],
+["Cotton","Wood & Textiles","Raw cotton."],
+["Cotton Yarn","Wood & Textiles","Processed cotton yarn."],
+["Ankara Fabric","Wood & Textiles","African print fabrics."],
+["Aso Oke","Wood & Textiles","Traditional Nigerian woven fabric."],
+["Adire Fabric","Wood & Textiles","Traditional hand-dyed textiles."],
+["Leather Products","Wood & Textiles","Processed leather goods."],
+["Natural Rubber","Wood & Textiles","Natural rubber."],
+["Rubber Sheets","Wood & Textiles","Processed rubber sheets."],
+
+["Cement","Manufactured","Nigerian cement."],
+["Ceramic Tiles","Manufactured","Ceramic and floor tiles."],
+["Glass Products","Manufactured","Glass products."],
+["Plastic Products","Manufactured","Plastic packaging and products."],
+["Aluminium Products","Manufactured","Aluminium materials."],
+["Steel Products","Manufactured","Steel products."],
+["Paper Products","Manufactured","Paper and packaging."],
+["Soaps and Detergents","Manufactured","Cleaning products."],
+["Cosmetics","Manufactured","Nigerian cosmetic products."],
+["Textile Products","Manufactured","Garments and textiles."],
+["Bottled Water","Manufactured","Packaged drinking water."],
+["Processed Food Products","Manufactured","Packaged Nigerian food products."]
+];
+
+// Export database for the main website
+document.documentElement.innerHTML =
+`<pre id="export-data"></pre>`;
+
+document.getElementById("export-data").textContent =
+JSON.stringify(products);
+
+</script>
+</body>
+</html>
