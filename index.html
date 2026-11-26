@@ -193,71 +193,54 @@
         // JAVASCRIPT LOGIC
         
         // 1. Data for Commodity Cards
-        const products = [
-            {
-                name: "Dried Hibiscus Flowers",
-                tag: "Bestseller",
-                desc: "High Anthocyanin content, 98% purity. Grade A Sun-dried.",
-                img: "https://unsplash.com"
-            },
-            {
-                name: "Dried Split Ginger",
-                tag: "Top Quality",
-                desc: "Low moisture, high pungency. Sourced from organic farms.",
-                img: "https://unsplash.com"
-            },
-            {
-                name: "Raw Cashew Nuts",
-                tag: "Export Grade",
-                desc: "High KOR (Kernel Outturn Ratio), perfectly dried.",
-                img: "https://unsplash.com"
-            }
-        ];
+       
+let products = [];
+let activeCategory = "All";
 
-        // 2. Render Cards Automatically
-        const grid = document.getElementById('productGrid');
-        products.forEach(p => {
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="card-img" style="background-image: url('${p.img}')"></div>
-                    <div class="card-content">
-                        <span class="card-tag">${p.tag}</span>
-                        <h3 class="card-title">${p.name}</h3>
-                        <p>${p.desc}</p>
-                        <button class="btn" onclick="selectProduct('${p.name}')">Inquire Now</button>
-                    </div>
-                </div>
-            `;
-        });
+async function loadProducts() {
+    try {
+        const response = await fetch("item.html");
 
-        // 3. Auto-fill form when "Inquire Now" is clicked
-        function selectProduct(name) {
-            document.getElementById('commoditySelect').value = name;
-            document.getElementById('inquiry-section').scrollIntoView({behavior: 'smooth'});
+        if (!response.ok) {
+            throw new Error("Could not load item.html");
         }
 
-        // 4. Form Submission Logic (Mailto Link)
-        document.getElementById('quoteForm').onsubmit = function(e) {
-            e.preventDefault();
-            
-            const myEmail = "your-email@example.com"; // CHANGE THIS TO YOUR ACTUAL EMAIL
-            const name = document.getElementById('name').value;
-            const commodity = document.getElementById('commoditySelect').value;
-            const qty = document.getElementById('quantity').value;
-            const msg = document.getElementById('message').value;
+        const html = await response.text();
 
-            const subject = encodeURIComponent(`New Export Inquiry: ${commodity}`);
-            const body = encodeURIComponent(
-                `Hello, my name is ${name}.\n\n` +
-                `I am interested in importing ${qty} Metric Tonnes of ${commodity}.\n\n` +
-                `Additional Details: ${msg}`
-            );
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
 
-            // Opens the user's email client with the data pre-filled
-            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-            
-            alert("Your email client will now open. Please click send to finalize your request!");
-        };
+        products = JSON.parse(
+            doc.getElementById("export-data").textContent
+        );
+
+        categories = [
+            "All",
+            ...new Set(products.map(p => p[1]))
+        ];
+
+        // Populate the inquiry dropdown
+        select.innerHTML = '<option value="">Select Export Product</option>';
+
+        products.forEach(p => {
+            const option = document.createElement("option");
+            option.value = p[0];
+            option.textContent = p[0];
+            select.appendChild(option);
+        });
+
+        createCategories();
+        renderProducts();
+
+    } catch (error) {
+        console.error(error);
+        grid.innerHTML =
+            '<div class="empty">Unable to load products. Check item.html.</div>';
+    }
+}
+
+loadProducts();
+
     </script>
 </body>
 </html>
